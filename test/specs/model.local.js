@@ -2,19 +2,16 @@ describe("Model.Local", function(){
   var User;
   
   beforeEach(function(){
-    User = Spine.Model.setup("User", "first", "last")
+    User = Spine.Model.setup("User", "name")
   });
   
   it("should persist attributes", function(){
     User.extend(Spine.Model.Local);
     
-    User.create({first: "Bob", last: "McCreedy"});
+    User.create({name: "Bob"});
     User.records = {};
     
     User.loadLocal();
-    bob = User.first();
-    expect(bob).toBeTruthy();
-    expect(bob.first).toEqual("Bob");
-    expect(bob.last).toEqual("McCreedy");
+    expect(User.first()).toBeTruthy();
   });
 });
